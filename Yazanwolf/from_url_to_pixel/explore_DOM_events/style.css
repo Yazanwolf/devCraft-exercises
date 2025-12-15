@@ -1,0 +1,44 @@
+.container {
+    width: 50%;
+    margin: 3rem auto 3rem auto;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    width: 50%;
+    margin: 1rem auto 0 auto;
+}
+
+input {
+    width: 50%;
+    height: 25px;
+    margin: 0 auto 0 auto;
+    border-radius: 4px;
+}
+
+button {
+    min-width: 15%;
+    height: 30px;
+    border-radius: 50px;
+    margin: 1rem auto 1rem auto;
+    background-color: rgb(133, 242, 93);
+}
+
+button:hover {
+    background-color: rgb(80, 240, 21);
+}
+
+button:active {
+    background-color: rgb(124, 247, 108);
+}
+
+.hidden {
+    display: none;
+}
+
+.error {
+    color: red;
+    margin: 0 auto 0 auto;
+    font-size: small;
+}
