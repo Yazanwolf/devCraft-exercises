@@ -7,38 +7,33 @@ const passwordInput = document.getElementById('password');
 const passwordError = document.getElementById('password-error');
 const repeatPasswordInput = document.getElementById('repeat-password');
 const repeatPasswordError = document.getElementById('repeat-password-error');
+const registerSuccess = document.getElementById('register-success');
 const formElement = document.getElementById('register-form');
 
 const registerUser = (event) => {
     event.preventDefault();
-    if (isNameValid() && isEmailValid() && isPasswordValid() && isRepeatPasswordValid()) {
-            alert('Registration successful!');
-            return;
+    if (!validateInputs()) {
+        registerSuccess.classList.add('hidden');
+        return;
     }
-    alert('Validation failed! Please check your input.');
+    registerSuccess.classList.remove('hidden');
 }
 
+formElement.addEventListener('submit', registerUser);
+
 nameInput.addEventListener('blur', () => {
-    if (!isNameValid()) {
-        nameError.classList.remove('hidden');
-    }
+    validateName();
 });
 
 emailInput.addEventListener('blur', () => {
-    if (!isEmailValid()) {
-        emailError.classList.remove('hidden');
-    }
+    validateEmail();
 });
 
 passwordInput.addEventListener('blur', () => {
-    if (!isPasswordValid()) {
-        passwordError.classList.remove('hidden');
-    }
+    validatePassword();
 });
 repeatPasswordInput.addEventListener('blur', () => {
-    if (!isRepeatPasswordValid()) {
-        repeatPasswordError.classList.remove('hidden');
-    }
+    validateRepeatPassword();
 });
 
 nameInput.addEventListener('focus', () => {
@@ -54,7 +49,45 @@ repeatPasswordInput.addEventListener('focus', () => {
     repeatPasswordError.classList.add('hidden');
 });
 
-formElement.addEventListener('submit', registerUser);
+function validateInputs() {
+    const isNameValid = validateName();
+    const isEmailValid = validateEmail();
+    const isPasswordValid = validatePassword();
+    const isRepeatPasswordValid = validateRepeatPassword();
+    return isNameValid && isEmailValid && isPasswordValid && isRepeatPasswordValid;
+}
+
+function validateName() {
+    if (!isNameValid()) {
+        nameError.classList.remove('hidden');
+        return false;
+    }
+    return true;
+}
+
+function validateEmail() {
+    if (!isEmailValid()) {
+        emailError.classList.remove('hidden');
+        return false;
+    }
+    return true;
+}
+
+function validatePassword() {
+    if (!isPasswordValid()) {
+        passwordError.classList.remove('hidden');
+        return false;
+    }
+    return true;
+}
+
+function validateRepeatPassword() {
+    if (!isRepeatPasswordValid()) {
+        repeatPasswordError.classList.remove('hidden');
+        return false;
+    }
+    return true;
+}
 
 // Helper function to validate email format
 function isValidEmail(email) {
@@ -62,14 +95,9 @@ function isValidEmail(email) {
     return emailPattern.test(email);
 }
 
-function isRepeatPasswordValid() {
-    const repeatPasswordValue = repeatPasswordInput.value;
-    return repeatPasswordValue && repeatPasswordValue !== '' && repeatPasswordValue === passwordInput.value;
-}
-
-function isPasswordValid() {
-    const passwordValue = passwordInput.value;
-    return passwordValue && passwordValue !== '' && passwordValue.length > 8;
+function isNameValid() {
+    const inputValue = nameInput.value;
+    return inputValue && inputValue !== '';
 }
 
 function isEmailValid() {
@@ -77,7 +105,12 @@ function isEmailValid() {
     return emailValue && isValidEmail(emailValue);
 }
 
-function isNameValid() {
-    const inputValue = nameInput.value;
-    return inputValue && inputValue !== '';
+function isPasswordValid() {
+    const passwordValue = passwordInput.value;
+    return passwordValue && passwordValue !== '' && passwordValue.length >= 8;
 }
+
+function isRepeatPasswordValid() {
+    const repeatPasswordValue = repeatPasswordInput.value;
+    return repeatPasswordValue && repeatPasswordValue !== '' && repeatPasswordValue === passwordInput.value;
+}    

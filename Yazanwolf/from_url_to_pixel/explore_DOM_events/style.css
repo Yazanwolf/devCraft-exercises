@@ -7,7 +7,8 @@
 
 label {
     width: 50%;
-    margin: 1rem auto 0 auto;
+    font-size: large;
+    margin: 0.1rem auto 0 auto;
 }
 
 input {
@@ -21,8 +22,9 @@ button {
     min-width: 15%;
     height: 30px;
     border-radius: 50px;
-    margin: 1rem auto 1rem auto;
+    margin: 0.2rem auto 1rem auto;
     background-color: rgb(133, 242, 93);
+    font-weight: bold;
 }
 
 button:hover {
@@ -34,11 +36,21 @@ button:active {
 }
 
 .hidden {
-    display: none;
+    visibility: hidden;
 }
 
 .error {
     color: red;
     margin: 0 auto 0 auto;
     font-size: small;
+}
+
+.registration {
+    display: flex;
+    flex-direction: row;
+}
+
+.success {
+    color: green;
+    margin: 0 auto 0 auto;
 }
