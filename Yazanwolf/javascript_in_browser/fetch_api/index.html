@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self';
+        style-src 'self' 'unsafe-inline';
+        script-src 'self' 'unsafe-inline';
+        connect-src 'self' https://geocoding-api.open-meteo.com https://api.open-meteo.com;">
+    <script src="main.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Wether App</title>
+</head>
+<body>
+    <div class="weather-app">
+        <h1>Weather App</h1>
+        <form id="weather-form" class="container">
+            <label for="city-input">City:</label>
+            <input type="text" id="city-input" name="city" placeholder="Enter city name" required>
+            <button type="submit">Get Weather</button>
+        </form>
+        <div id="weather-result" class="hidden">
+            <h2>Weather in <span id="city-name"></span>, <span id="country-name"></span></h2>
+            <p>Temperature: <span id="temperature"></span> °C</p>
+            <p>Wind: <span id="wind"></span></p>
+        </div>
+    </div>
+</body>
+</html>
