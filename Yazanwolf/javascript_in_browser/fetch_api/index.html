@@ -12,17 +12,21 @@
     <title>Wether App</title>
 </head>
 <body>
-    <div class="weather-app">
-        <h1>Weather App</h1>
+    <div class="weather-app app-container">
+        <h1 class="app-name">Weather App</h1>
         <form id="weather-form" class="container">
             <label for="city-input">City:</label>
             <input type="text" id="city-input" name="city" placeholder="Enter city name" required>
-            <button type="submit">Get Weather</button>
+            <span id="city-error" class="error hidden">City name must be provided</span>
+            <button type="submit">Get Weather Info</button>
         </form>
-        <div id="weather-result" class="hidden">
+        <div id="weather-result" class="container hidden">
             <h2>Weather in <span id="city-name"></span>, <span id="country-name"></span></h2>
             <p>Temperature: <span id="temperature"></span> °C</p>
             <p>Wind: <span id="wind"></span></p>
+        </div>
+        <div id="weather-result-error" class="container hidden">
+            <span id="weather-error-message" class="error">test</span>
         </div>
     </div>
 </body>
