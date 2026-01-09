@@ -19,7 +19,7 @@ const validateCityInput = () => {
     return true;
 };
 
-const setWeatherResultView = (temperature, windspeed) => {
+const setWeatherResultView = (temperature) => {
     temp.className = '';
     if (temperature <= 10) {
         temp.classList.add('cold');
@@ -30,7 +30,7 @@ const setWeatherResultView = (temperature, windspeed) => {
     }
 };
 
-document.getElementById('weather-form').addEventListener('submit', function(event) {
+document.getElementById('weather-form').addEventListener('submit', function (event) {
     event.preventDefault();
     const city = cityInput.value.trim();
     if (city === '') {
@@ -56,46 +56,46 @@ const getCityWeatherInfo = (city) => {
     weatherResult.classList.add('hidden');
     cityInput.value = '';
     fetch(`https://geocoding-api.open-meteo.com/v1/search?count=1&language=en&format=json&name=${city}`)
-    .then((cityResponse) => {
-        if (!cityResponse) {
-            return Promise.reject('Error while searching for city');
-        }
-        if (!cityResponse.ok) {
-            return Promise.reject('Network response was not ok');
-        }
-        return cityResponse.json();
-    })
-    .then((cityInfo) => {
-        if (!cityInfo.results || cityInfo.results.length === 0) {
-            return Promise.reject('City not found: ' + city);
-        }
-        const { country, name, latitude, longitude } = cityInfo.results[0];
-        cityName.textContent = name;
-        countryName.textContent = country;
-        return fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`);
-    })
-    .then((weatherResponse) => {
-        if (!weatherResponse) {
-            return Promise.reject('Error while fetching weather data');
-        }
-        if (!weatherResponse.ok) {
-            return Promise.reject('Network response was not ok');
-        }
-        return weatherResponse.json()
-    })
-    .then((weatherInfo) => {
-        if (!weatherInfo || !weatherInfo.current_weather) {
-            return Promise.reject('Invalid weather data received');
-        }
-        weatherResult.classList.remove('hidden');
-        const { temperature, windspeed } = weatherInfo.current_weather;
-        setWeatherResultView(temperature, windspeed);
-        temp.textContent = temperature;
-        wind.textContent = `${windspeed} km/h`;
-        weatherResult.classList.remove('hidden');
-    })
-    .catch((error) => {
-        weatherError.textContent = error;
-        weatherResultError.classList.remove('hidden');
-    });
+        .then((cityResponse) => {
+            if (!cityResponse) {
+                return Promise.reject('Error while searching for city');
+            }
+            if (!cityResponse.ok) {
+                return Promise.reject('Network response was not ok');
+            }
+            return cityResponse.json();
+        })
+        .then((cityInfo) => {
+            if (!cityInfo.results || cityInfo.results.length === 0) {
+                return Promise.reject('City not found: ' + city);
+            }
+            const { country, name, latitude, longitude } = cityInfo.results[0];
+            cityName.textContent = name;
+            countryName.textContent = country;
+            return fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`);
+        })
+        .then((weatherResponse) => {
+            if (!weatherResponse) {
+                return Promise.reject('Error while fetching weather data');
+            }
+            if (!weatherResponse.ok) {
+                return Promise.reject('Network response was not ok');
+            }
+            return weatherResponse.json()
+        })
+        .then((weatherInfo) => {
+            if (!weatherInfo || !weatherInfo.current_weather) {
+                return Promise.reject('Invalid weather data received');
+            }
+            weatherResult.classList.remove('hidden');
+            const { temperature, windspeed } = weatherInfo.current_weather;
+            setWeatherResultView(temperature);
+            temp.textContent = temperature;
+            wind.textContent = `${windspeed} km/h`;
+            weatherResult.classList.remove('hidden');
+        })
+        .catch((error) => {
+            weatherError.textContent = error;
+            weatherResultError.classList.remove('hidden');
+        });
 }
