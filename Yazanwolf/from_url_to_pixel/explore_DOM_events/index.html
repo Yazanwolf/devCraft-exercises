@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="./style.css">
+    </style>
+    <script src="main.js" defer></script>
+</head>
+
+<body>
+    <form id="register-form" class="container">
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="e.g. John Smith">
+        <span id="name-error" class="error hidden">Name cannot be empty!</span>
+        <label for="email">E-Mail:</label>
+        <input type="email" id="email" placeholder="address@example.com">
+        <span id="email-error" class="error hidden">Invalid Email address!</span>
+        <label for="password">Password:</label>
+        <input type="password" id="password">
+        <span id="password-error" class="error hidden">Password must contain at least 8 characters!</span>
+        <label for="repeat-password">Password bestätigen:</label>
+        <input type="password" id="repeat-password">
+        <span id="repeat-password-error" class="error hidden">Passwords do not match!</span>
+        <button id="register-button" type="submit">Absenden</button>
+    </form>
+    <article class="registration">
+        <h1 id="register-success" class="success hidden">Successfully registered!</h1>
+    </article>
+</body>
+
+</html>
