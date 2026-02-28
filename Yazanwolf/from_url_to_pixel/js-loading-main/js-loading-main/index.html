@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS Laden Problem</title>
+  <!-- script1 can be async as it doesn't depend on any DOM element, so it can load and execute asyncrhonosly without any problem. -->
+  <script src="js/script1.js" async></script>
+  <!-- script2 gives the button "loadScript" it's functionality, hence it shlould be first executed after the button is rendered.
+  Being placed at the end of the body is okay but unnecessarily delay it's loading until the end, a better solution would be moving
+  it into the head and adding "defer" to it so that it loads as fast as possible but doesn't execute until the DOM is fully rendered.
+  -->
+  <script src="js/script2.js" defer></script>
+  <!-- This script is blocking and cannot be async therefore must be either deleted, 
+   moved into an external js data with async attribute, or placed at the end of the body element 
+   I am commenting it out as it serves no purpose
+  -->
+  <!-- <script>
+    console.log("Inline script!")
+  </script> -->
+</head>
+
+<body>
+  <h1>Willkommen beim JS Lade-Probleme Workshop!</h1>
+  <button id="loadScript">Lade script3.js</button>
+</body>
+
+</html>
