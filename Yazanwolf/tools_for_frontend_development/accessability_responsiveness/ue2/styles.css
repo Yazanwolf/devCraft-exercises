@@ -1,0 +1,66 @@
+/* Reset some default styles for consistency */
+body,
+h1,
+h2,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Basic styling for the header */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 0.1rem;
+  text-align: center;
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav li {
+  display: inline;
+  margin-right: 2rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+}
+
+/* Main content container */
+main {
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 3rem;
+}
+
+/* Section styling */
+section {
+  margin-bottom: 13rem;
+  padding: 13rem;
+  border: 0.3rem solid #ddd;
+}
+
+/* Footer styling */
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+@media screen and (max-width: 500px) {
+  nav ul {
+    text-align: center;
+  }
+
+  nav li {
+    display: inline;
+  }
+
+  section {
+    padding: 2rem;
+  }
+}
